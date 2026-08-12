@@ -24,6 +24,12 @@
             {%- if p3 != blank -%}<img src="{{ p3.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
             {%- if p4 != blank -%}<img src="{{ p4.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
             {%- if p5 != blank -%}<img src="{{ p5.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
+            
+            {%- if p1 == blank -%}
+              {%- if forloop.index == 1 -%}<span class="pimg p-combo2" role="img"></span>{%- endif -%}
+              {%- if forloop.index == 2 -%}<span class="pimg p-kitchen" role="img"></span><span class="pimg p-tap" role="img"></span><span class="pimg p-dish" role="img"></span>{%- endif -%}
+              {%- if forloop.index == 3 -%}<span class="pimg p-kitchen" role="img"></span><span class="pimg p-tap" role="img"></span><span class="pimg p-floor" role="img"></span><span class="pimg p-toilet" role="img"></span><span class="pimg p-laundry" role="img"></span>{%- endif -%}
+            {%- endif -%}
           </div>
           
           <div class="qty">{{ block.settings.qty }}<small>Products</small></div>

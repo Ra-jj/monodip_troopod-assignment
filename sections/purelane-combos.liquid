@@ -42,22 +42,32 @@
                   <img src="{{ p1.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p1.title | escape }}">
                   <span>{{ block.settings.p1_note | escape }}</span>
                 </span>
+              {%- else -%}
+                <span class="it"><span class="pimg {% if forloop.index == 1 %}p-kitchen{% elsif forloop.index == 2 %}p-laundry{% elsif forloop.index == 3 %}p-kitchen{% endif %}" role="img"></span><span>{% if forloop.index == 1 %}Cuts grease instantly{% elsif forloop.index == 2 %}Removes tough stains & odour{% elsif forloop.index == 3 %}Cuts grease instantly{% endif %}</span></span>
               {%- endif -%}
               
+              <span class="plus" aria-hidden="true">+</span>
+              
               {%- if p2 != blank -%}
-                <span class="plus" aria-hidden="true">+</span>
                 <span class="it">
                   <img src="{{ p2.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p2.title | escape }}">
                   <span>{{ block.settings.p2_note | escape }}</span>
                 </span>
+              {%- else -%}
+                <span class="it"><span class="{% if forloop.index == 2 %}tile{% else %}pimg {% if forloop.index == 1 %}p-dish{% elsif forloop.index == 3 %}p-floor{% endif %}{% endif %}" role="img">
+                  {% if forloop.index == 2 %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>{% endif %}
+                </span><span>{% if forloop.index == 1 %}Squeaky clean dishes{% elsif forloop.index == 2 %}Softens & freshens every wash{% elsif forloop.index == 3 %}Kills 99.9% germs{% endif %}</span></span>
               {%- endif -%}
               
+              <span class="plus" aria-hidden="true">+</span>
+              
               {%- if p3 != blank -%}
-                <span class="plus" aria-hidden="true">+</span>
                 <span class="it">
                   <img src="{{ p3.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p3.title | escape }}">
                   <span>{{ block.settings.p3_note | escape }}</span>
                 </span>
+              {%- else -%}
+                <span class="it"><span class="pimg {% if forloop.index == 1 %}p-tap{% elsif forloop.index == 2 %}p-wm{% elsif forloop.index == 3 %}p-handwash{% endif %}" role="img"></span><span>{% if forloop.index == 1 %}Melts hard water stains{% elsif forloop.index == 2 %}Deep-cleans your machine{% elsif forloop.index == 3 %}Gentle hydration for hands{% endif %}</span></span>
               {%- endif -%}
             </div>
           </div>

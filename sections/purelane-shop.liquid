@@ -15,16 +15,11 @@
       {%- for product in collection.products limit: section.settings.products_to_show -%}
         {%- render 'purelane-product-card', product: product -%}
       {%- else -%}
-        <!-- Fallback if no collection selected -->
-        {% for i in (1..4) %}
-        <article class="glass card rv">
-          <div class="shot"><div class="pimg" style="background:rgba(75,58,143,0.1);width:100%;height:100%;border-radius:12px"></div></div>
-          <h4>Example Product {{ i }}</h4>
-          <div class="rate"><b>★ 5.0</b> &middot; 100 reviews</div>
-          <div class="pr"><strong>Rs. 200</strong></div>
-          <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:12px">Add to cart</button>
-        </article>
-        {% endfor %}
+        <!-- Fallback if no collection selected matches original exactly -->
+        <article class="glass card rv"><div class="shot"><span class="pill">Best seller</span><span class="pimg p-kbtl" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span></div><h4>Foaming Kitchen Cleaner &amp; Degreaser</h4><div class="rate"><b>&#9733; 4.8</b> &middot; 237 reviews</div><div class="pr"><strong>&#8377;200</strong><s>&#8377;299</s><em>33% off</em></div><button class="btn btn-ghost btn-sm" style="width:100%;margin-top:12px">Add to cart</button></article>
+        <article class="glass card rv"><div class="shot"><span class="pill">New</span><span class="pimg p-tbtl" role="img" aria-label="Purelane tap cleaner and limescale remover spray bottle"></span></div><h4 style="min-height:36px">Tap Cleaner &amp; Limescale Remover</h4><div class="rate"><b>&#9733; 4.6</b> &middot; 104 reviews</div><div class="pr"><strong>&#8377;249</strong><s>&#8377;349</s><em>29% off</em></div><button class="btn btn-ghost btn-sm" style="width:100%;margin-top:12px">Add to cart</button></article>
+        <article class="glass card rv"><div class="shot"><span class="pimg p-lbtl" role="img" aria-label="Purelane non-toxic laundry detergent liquid bottle"></span></div><h4 style="min-height:36px">Non-toxic Laundry Detergent</h4><div class="rate"><b>&#9733; 4.9</b> &middot; 412 reviews</div><div class="pr"><strong>&#8377;349</strong><s>&#8377;499</s><em>30% off</em></div><button class="btn btn-ghost btn-sm" style="width:100%;margin-top:12px">Add to cart</button></article>
+        <article class="glass card rv"><div class="shot"><span class="pill">Top rated</span><span class="pimg p-fbtl" role="img" aria-label="Purelane natural herbal floor cleaner liquid bottle"></span></div><h4 style="min-height:36px">Natural Herbal Floor Cleaner</h4><div class="rate"><b>&#9733; 4.8</b> &middot; 189 reviews</div><div class="pr"><strong>&#8377;199</strong><s>&#8377;249</s><em>20% off</em></div><button class="btn btn-ghost btn-sm" style="width:100%;margin-top:12px">Add to cart</button></article>
       {%- endfor -%}
     </div>
   </div>
