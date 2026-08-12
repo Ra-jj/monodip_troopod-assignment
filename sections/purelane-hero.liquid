@@ -166,7 +166,74 @@
       </div>
     </div>
 
-    <div class="hero-prod" id="heroProd"><div class="hstage" id="hstage"><div class="hslide hs1 on" data-n="1"><span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span><div class="glass-2 ptag"><span class="lbl">Single bottle</span><span class="val"><strong>&#8377;200</strong><s>&#8377;299</s></span><span class="cut">33% off</span></div></div><div class="hslide hs2" data-n="2"><span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner and limescale remover spray bottle"></span><span class="hp p-kbtl b d2" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span><div class="glass-2 ptag"><span class="lbl">Any 2 products</span><span class="val"><strong>&#8377;349</strong><s>&#8377;598</s></span><span class="cut">Save &#8377;249</span></div></div><div class="hslide hs3" data-n="3"><span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner and limescale remover spray bottle"></span><span class="hp p-mbtl b d2" role="img" aria-label="Purelane copper, bronze and brass cleaner pump bottle"></span><span class="hp p-kbtl c d3" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span><div class="glass-2 ptag"><span class="lbl">Any 3 products</span><span class="val"><strong>&#8377;499</strong><s>&#8377;897</s></span><span class="cut">Save &#8377;398</span></div></div></div><div class="hdots" id="hdots"><button type="button" class="on" aria-label="Show 1 product"></button><button type="button" class="" aria-label="Show 2 products"></button><button type="button" class="" aria-label="Show 3 products"></button></div></div>
+    <div class="hero-prod" id="heroProd"><div class="hstage" id="hstage">
+  {%- for block in section.blocks -%}
+    {%- assign p1 = all_products[block.settings.product_1] -%}
+    {%- assign p2 = all_products[block.settings.product_2] -%}
+    {%- assign p3 = all_products[block.settings.product_3] -%}
+    {%- assign total_price = 0 -%}
+    {%- assign total_compare = 0 -%}
+    {%- if p1 != blank -%}{%- assign total_price = total_price | plus: p1.price -%}{%- assign total_compare = total_compare | plus: p1.compare_at_price -%}{%- endif -%}
+    {%- if p2 != blank -%}{%- assign total_price = total_price | plus: p2.price -%}{%- assign total_compare = total_compare | plus: p2.compare_at_price -%}{%- endif -%}
+    {%- if p3 != blank -%}{%- assign total_price = total_price | plus: p3.price -%}{%- assign total_compare = total_compare | plus: p3.compare_at_price -%}{%- endif -%}
+    
+    {%- if block.settings.custom_price != blank -%}
+      {%- assign display_price = block.settings.custom_price | times: 100 -%}
+    {%- else -%}
+      {%- assign display_price = total_price -%}
+    {%- endif -%}
+
+    {%- assign save_amt = total_compare | minus: display_price -%}
+    {%- assign save_pct = save_amt | times: 100.0 | divided_by: total_compare | round -%}
+
+    <div class="hslide hs{{ forloop.index }} {% if forloop.first %}on{% endif %}" data-n="{{ forloop.index }}" {{ block.shopify_attributes }}>
+      {%- if p1 != blank -%}
+        <img src="{{ p1.featured_image | image_url: width: 400 }}" class="hp a d1" alt="{{ p1.title | escape }}" style="object-fit: contain;">
+      {%- else -%}
+        <span class="hp p-kbtl a d1" role="img"></span>
+      {%- endif -%}
+      
+      {%- if p2 != blank -%}
+        <img src="{{ p2.featured_image | image_url: width: 400 }}" class="hp b d2" alt="{{ p2.title | escape }}" style="object-fit: contain;">
+      {%- elsif block.settings.product_2 != blank -%}
+        <!-- Fallback to empty if not selected, but wait prototype uses p-kbtl -->
+      {%- endif -%}
+      
+      {%- if p3 != blank -%}
+        <img src="{{ p3.featured_image | image_url: width: 400 }}" class="hp c d3" alt="{{ p3.title | escape }}" style="object-fit: contain;">
+      {%- endif -%}
+
+      <div class="glass-2 ptag">
+        <span class="lbl">{{ block.settings.label | escape }}</span>
+        <span class="val">
+          <strong>{{ display_price | money_without_trailing_zeros }}</strong>
+          {%- if total_compare > display_price -%}
+            <s>{{ total_compare | money_without_trailing_zeros }}</s>
+          {%- endif -%}
+        </span>
+        {%- if total_compare > display_price -%}
+          <span class="cut">
+            {%- if block.settings.savings_text != blank -%}
+              {{ block.settings.savings_text | escape }}
+            {%- else -%}
+              {{ save_pct }}% off
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- else -%}
+    <!-- Hardcoded fallback if no blocks -->
+    <div class="hslide hs1 on" data-n="1"><span class="hp p-kbtl a d1" role="img"></span><div class="glass-2 ptag"><span class="lbl">Single bottle</span><span class="val"><strong>&#8377;200</strong><s>&#8377;299</s></span><span class="cut">33% off</span></div></div>
+  {%- endfor -%}
+</div>
+<div class="hdots" id="hdots">
+  {%- for block in section.blocks -%}
+    <button type="button" class="{% if forloop.first %}on{% endif %}" aria-label="Show {{ forloop.index }} product"></button>
+  {%- else -%}
+    <button type="button" class="on"></button>
+  {%- endfor -%}
+</div></div>
 
   </div>
 </section>
@@ -202,7 +269,47 @@
       "label": "Button link"
     }
   ],
-  "presets": [
+  "blocks": [
+    {
+      "type": "slider_slide",
+      "name": "Slide",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label (e.g. Single bottle)",
+          "default": "Single bottle"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product 1"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product 2 (Optional)"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product 3 (Optional)"
+        },
+        {
+          "type": "number",
+          "id": "custom_price",
+          "label": "Custom Price Overide (Number)"
+        },
+        {
+          "type": "text",
+          "id": "savings_text",
+          "label": "Custom Savings Text (e.g. Save 249)"
+        }
+      ]
+    }
+  ],
+  
     {
       "name": "Purelane Hero"
     }

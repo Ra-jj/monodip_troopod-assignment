@@ -2,7 +2,38 @@
   "sections": {
     "purelane_hero": {
       "type": "purelane-hero",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "slide_1": {
+          "type": "slider_slide",
+          "settings": {
+            "label": "Single bottle",
+            "custom_price": 200,
+            "savings_text": "33% off"
+          }
+        },
+        "slide_2": {
+          "type": "slider_slide",
+          "settings": {
+            "label": "Any 2 products",
+            "custom_price": 349,
+            "savings_text": "Save 249"
+          }
+        },
+        "slide_3": {
+          "type": "slider_slide",
+          "settings": {
+            "label": "Any 3 products",
+            "custom_price": 499,
+            "savings_text": "Save 398"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ]
     },
     "purelane_shop": {
       "type": "purelane-shop",
@@ -12,15 +43,129 @@
     },
     "purelane_combos": {
       "type": "purelane-combos",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "combo_1": {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "description": "Includes: Foaming Kitchen Cleaner, Dishwash Gel & Tap Cleaner.",
+            "bundle_price": 499
+          }
+        },
+        "combo_2": {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "description": "Includes: Laundry Detergent, Fabric Conditioner & Machine Cleaner.",
+            "bundle_price": 499
+          }
+        },
+        "combo_3": {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "description": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner & Handwash.",
+            "bundle_price": 799,
+            "is_hero": true,
+            "badge": "Best value"
+          }
+        }
+      },
+      "block_order": [
+        "combo_1",
+        "combo_2",
+        "combo_3"
+      ]
     },
     "purelane_bundles": {
       "type": "purelane-bundles",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "tier_1": {
+          "type": "tier",
+          "settings": {
+            "badge": "Starter",
+            "qty": 2,
+            "price": 349,
+            "compare_price": 598,
+            "subtext": "Flat 174 per product",
+            "bullet_1": "Pick any two products",
+            "bullet_2": "Free shipping across India"
+          }
+        },
+        "tier_2": {
+          "type": "tier",
+          "settings": {
+            "badge": "Most popular",
+            "is_popular": true,
+            "qty": 3,
+            "price": 499,
+            "compare_price": 897,
+            "subtext": "Flat 166 per product",
+            "bullet_1": "Pick any three products",
+            "bullet_2": "Free shipping across India"
+          }
+        },
+        "tier_3": {
+          "type": "tier",
+          "settings": {
+            "badge": "Whole home",
+            "qty": 5,
+            "price": 799,
+            "compare_price": 1495,
+            "subtext": "Flat 160 per product",
+            "bullet_1": "Pick any five products",
+            "bullet_2": "Free shipping across India"
+          }
+        }
+      },
+      "block_order": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ]
     },
     "purelane_reviews": {
       "type": "purelane-reviews",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Works like a charm",
+            "text": "Finally an eco option that cleans as well as the chemical detergent I used for years.",
+            "author": "Anita",
+            "product_name": "Laundry detergent"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Smells incredible",
+            "text": "Leaves the whole house smelling fresh but not artificial. Love it.",
+            "author": "Priya",
+            "product_name": "Floor cleaner"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "title": "Great for hard water",
+            "text": "The tap cleaner actually works. Took a couple of tries for very old stains but looks brand new now.",
+            "author": "Rahul",
+            "product_name": "Tap cleaner"
+          }
+        }
+      },
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3"
+      ]
     }
   },
   "order": [

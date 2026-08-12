@@ -1,0 +1,42 @@
+{%- assign show_pill = false -%}
+{%- assign pill_text = '' -%}
+{%- if product.tags contains 'Best seller' -%}
+  {%- assign show_pill = true -%}
+  {%- assign pill_text = 'Best seller' -%}
+{%- elsif product.tags contains 'Top rated' -%}
+  {%- assign show_pill = true -%}
+  {%- assign pill_text = 'Top rated' -%}
+{%- elsif product.tags contains 'New' -%}
+  {%- assign show_pill = true -%}
+  {%- assign pill_text = 'New' -%}
+{%- endif -%}
+
+<article class="glass card rv {% if class %}{{ class }}{% endif %}">
+  <div class="shot">
+    {%- if show_pill -%}
+      <span class="pill">{{ pill_text }}</span>
+    {%- endif -%}
+    {%- if product.featured_media -%}
+      <img src="{{ product.featured_media | image_url: width: 500 }}" class="pimg" alt="{{ product.featured_media.alt | escape }}" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply">
+    {%- else -%}
+      <div class="pimg" style="background:rgba(75,58,143,0.1);display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:12px">No image</div>
+    {%- endif -%}
+  </div>
+  <h4 style="min-height:36px">{{ product.title | escape }}</h4>
+  <div class="rate"><b>★ 4.8</b> &middot; 237 reviews</div>
+  <div class="pr">
+    <strong>{{ product.price | money_without_trailing_zeros }}</strong>
+    {%- if product.compare_at_price > product.price -%}
+      <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+      <em>{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% off</em>
+    {%- endif -%}
+  </div>
+  {%- if product.available -%}
+    <form method="post" action="/cart/add">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+      <button class="btn btn-ghost btn-sm" type="submit" style="width:100%;margin-top:12px">Add to cart</button>
+    </form>
+  {%- else -%}
+    <button class="btn btn-ghost btn-sm" disabled style="width:100%;margin-top:12px;opacity:0.5">Sold out</button>
+  {%- endif -%}
+</article>

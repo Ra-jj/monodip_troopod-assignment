@@ -4,51 +4,55 @@
       <div class="panel-head" style="margin-bottom:0">
         <span class="kicker">{{ section.settings.kicker | escape }}</span>
         <h2 class="d2" style="margin-top:12px">{{ section.settings.heading | escape }}</h2>
-        <p class="lede" style="margin:0 auto">Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way.</p>
+        <p class="lede" style="margin:0 auto">{{ section.settings.description | escape }}</p>
       </div>
     </div>
     <div class="tiers">
-      <article class="glass tier rv">
-        <span class="tag">Starter</span><div class="tierpix" aria-hidden="true"><span class="pimg p-combo2" role="img" aria-label="Purelane tap cleaner and kitchen cleaner combo pack"></span></div>
-        <div class="qty">2<small>Products</small></div>
-        <div class="price">₹349 <s>₹598</s></div>
-        <p class="body-s" style="font-size:12px">Flat ₹174 per product</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Pick any two products</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Free shipping across India</li>
-        </ul>
-        <a class="btn btn-ghost" href="#shop">Build this box</a>
-      </article>
-      <article class="glass tier best rv rv-d2">
-        <span class="tag">Most popular</span><div class="tierpix" aria-hidden="true"><span class="pimg p-kitchen" role="img" aria-label="Purelane foaming kitchen cleaner"></span><span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner and limescale remover"></span><span class="pimg p-dish" role="img" aria-label="Purelane organic dishwash liquid gel"></span></div>
-        <div class="qty">3<small>Products</small></div>
-        <div class="price">₹499 <s>₹897</s></div>
-        <p class="body-s" style="font-size:12px">Flat ₹166 per product</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Pick any three products</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Covers kitchen and laundry</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Free shipping across India</li>
-        </ul>
-        <a class="btn btn-primary" href="#shop">Build this box
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
-        </a>
-      </article>
-      <article class="glass tier rv rv-d3">
-        <span class="tag">Whole home</span><div class="tierpix five" aria-hidden="true"><span class="pimg p-kitchen" role="img" aria-label="Purelane foaming kitchen cleaner"></span><span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner and limescale remover"></span><span class="pimg p-floor" role="img" aria-label="Purelane natural herbal floor cleaner"></span><span class="pimg p-toilet" role="img" aria-label="Purelane non-toxic toilet cleaner"></span><span class="pimg p-laundry" role="img" aria-label="Purelane non-toxic laundry detergent"></span></div>
-        <div class="qty">5<small>Products</small></div>
-        <div class="price">₹799 <s>₹1495</s></div>
-        <p class="body-s" style="font-size:12px">Flat ₹160 per product</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Pick any five products</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Every room in one order</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Free shipping across India</li>
-        </ul>
-        <a class="btn btn-ghost" href="#shop">Build this box</a>
-      </article>
+      {%- for block in section.blocks -%}
+        <article class="glass tier {% if block.settings.is_popular %}best{% endif %} rv rv-d{{ forloop.index | plus: 1 }}" {{ block.shopify_attributes }}>
+          <span class="tag">{{ block.settings.badge | escape }}</span>
+          
+          <div class="tierpix {% if block.settings.product_4 != blank %}five{% endif %}" aria-hidden="true">
+            {%- assign p1 = all_products[block.settings.product_1] -%}
+            {%- assign p2 = all_products[block.settings.product_2] -%}
+            {%- assign p3 = all_products[block.settings.product_3] -%}
+            {%- assign p4 = all_products[block.settings.product_4] -%}
+            {%- assign p5 = all_products[block.settings.product_5] -%}
+            
+            {%- if p1 != blank -%}<img src="{{ p1.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
+            {%- if p2 != blank -%}<img src="{{ p2.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
+            {%- if p3 != blank -%}<img src="{{ p3.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
+            {%- if p4 != blank -%}<img src="{{ p4.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
+            {%- if p5 != blank -%}<img src="{{ p5.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="">{%- endif -%}
+          </div>
+          
+          <div class="qty">{{ block.settings.qty }}<small>Products</small></div>
+          <div class="price">{{ block.settings.price | times: 100 | money_without_trailing_zeros }} <s>{{ block.settings.compare_price | times: 100 | money_without_trailing_zeros }}</s></div>
+          <p class="body-s" style="font-size:12px">{{ block.settings.subtext | escape }}</p>
+          
+          <ul>
+            {%- if block.settings.bullet_1 != blank -%}
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.bullet_1 | escape }}</li>
+            {%- endif -%}
+            {%- if block.settings.bullet_2 != blank -%}
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.bullet_2 | escape }}</li>
+            {%- endif -%}
+            {%- if block.settings.bullet_3 != blank -%}
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.bullet_3 | escape }}</li>
+            {%- endif -%}
+          </ul>
+          
+          <a class="btn {% if block.settings.is_popular %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ block.settings.link }}">
+            {{ block.settings.btn_text | escape }}
+            {%- if block.settings.is_popular -%}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+            {%- endif -%}
+          </a>
+        </article>
+      {%- endfor -%}
     </div>
   </div>
 </section>
-
 
 {% schema %}
 {
@@ -67,6 +71,102 @@
       "id": "heading",
       "label": "Heading",
       "default": "One box. Every room."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Bundle Tier",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_popular",
+          "label": "Highlight as popular",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "qty",
+          "label": "Quantity of Products"
+        },
+        {
+          "type": "number",
+          "id": "price",
+          "label": "Price (Number)"
+        },
+        {
+          "type": "number",
+          "id": "compare_price",
+          "label": "Compare at price (Number)"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext"
+        },
+        {
+          "type": "text",
+          "id": "bullet_1",
+          "label": "Bullet 1"
+        },
+        {
+          "type": "text",
+          "id": "bullet_2",
+          "label": "Bullet 2"
+        },
+        {
+          "type": "text",
+          "id": "bullet_3",
+          "label": "Bullet 3"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Build this box"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Graphic Product 1"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Graphic Product 2"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Graphic Product 3"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Graphic Product 4"
+        },
+        {
+          "type": "product",
+          "id": "product_5",
+          "label": "Graphic Product 5"
+        }
+      ]
     }
   ],
   "presets": [
