@@ -9,7 +9,8 @@
           "settings": {
             "label": "Single bottle",
             "custom_price": 200,
-            "savings_text": "33% off"
+            "savings_text": "33% off",
+            "product_1": "purelane-kitchen-cleaner"
           }
         },
         "slide_2": {
@@ -38,7 +39,7 @@
     "purelane_shop": {
       "type": "purelane-shop",
       "settings": {
-        "collection": ""
+        "collection": "all"
       }
     },
     "purelane_combos": {
@@ -50,7 +51,8 @@
           "settings": {
             "title": "Kitchen essentials",
             "description": "Includes: Foaming Kitchen Cleaner, Dishwash Gel & Tap Cleaner.",
-            "bundle_price": 499
+            "bundle_price": 499,
+            "product_1": "purelane-kitchen-cleaner"
           }
         },
         "combo_2": {
@@ -58,7 +60,9 @@
           "settings": {
             "title": "Laundry care bundle",
             "description": "Includes: Laundry Detergent, Fabric Conditioner & Machine Cleaner.",
-            "bundle_price": 499
+            "bundle_price": 499,
+            "product_1": "purelane-laundry-detergent",
+            "product_2": "purelane-floor-cleaner"
           }
         },
         "combo_3": {
@@ -68,7 +72,10 @@
             "description": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner & Handwash.",
             "bundle_price": 799,
             "is_hero": true,
-            "badge": "Best value"
+            "badge": "Best value",
+            "product_1": "purelane-tap-cleaner",
+            "product_2": "purelane-magic-eraser",
+            "product_3": "purelane-toilet-cleaner"
           }
         }
       },
