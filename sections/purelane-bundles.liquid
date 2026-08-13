@@ -19,11 +19,11 @@
             {%- assign p4 = all_products[block.settings.product_4] -%}
             {%- assign p5 = all_products[block.settings.product_5] -%}
             
-            {%- if p1 != blank -%}<img src="{{ p1.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="" loading="lazy">{%- endif -%}
-            {%- if p2 != blank -%}<img src="{{ p2.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="" loading="lazy">{%- endif -%}
-            {%- if p3 != blank -%}<img src="{{ p3.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="" loading="lazy">{%- endif -%}
-            {%- if p4 != blank -%}<img src="{{ p4.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="" loading="lazy">{%- endif -%}
-            {%- if p5 != blank -%}<img src="{{ p5.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="" loading="lazy">{%- endif -%}
+            {%- if p1 != blank -%}{%- if p1.featured_image -%}<img src="{{ p1.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p1.title | escape }}" loading="lazy">{%- else -%}<span class="pimg" role="img" aria-label="{{ p1.title | escape }}"></span>{%- endif -%}{%- endif -%}
+            {%- if p2 != blank -%}{%- if p2.featured_image -%}<img src="{{ p2.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p2.title | escape }}" loading="lazy">{%- else -%}<span class="pimg" role="img" aria-label="{{ p2.title | escape }}"></span>{%- endif -%}{%- endif -%}
+            {%- if p3 != blank -%}{%- if p3.featured_image -%}<img src="{{ p3.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p3.title | escape }}" loading="lazy">{%- else -%}<span class="pimg" role="img" aria-label="{{ p3.title | escape }}"></span>{%- endif -%}{%- endif -%}
+            {%- if p4 != blank -%}{%- if p4.featured_image -%}<img src="{{ p4.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p4.title | escape }}" loading="lazy">{%- else -%}<span class="pimg" role="img" aria-label="{{ p4.title | escape }}"></span>{%- endif -%}{%- endif -%}
+            {%- if p5 != blank -%}{%- if p5.featured_image -%}<img src="{{ p5.featured_image | image_url: width: 80 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p5.title | escape }}" loading="lazy">{%- else -%}<span class="pimg" role="img" aria-label="{{ p5.title | escape }}"></span>{%- endif -%}{%- endif -%}
             
             {%- if p1 == blank -%}
               {%- if forloop.index == 1 -%}<span class="pimg p-combo2" role="img"></span>{%- endif -%}

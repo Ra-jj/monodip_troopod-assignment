@@ -114,10 +114,8 @@
   <a href="#voices" aria-label="Reviews"></a>
 </nav>
 
-<main id="top">
-
 <!-- ================= HERO ================= -->
-<section class="hero" data-scene="1">
+<section class="hero" id="top" data-scene="1">
   <div class="hero-grid">
 
     <div class="badges glass-2" aria-label="Product promises">
@@ -188,7 +186,11 @@
 
     <div class="hslide hs{{ forloop.index }} {% if forloop.first %}on{% endif %}" data-n="{{ forloop.index }}" {{ block.shopify_attributes }}>
       {%- if p1 != blank -%}
-        <img src="{{ p1.featured_image | image_url: width: 400 }}" class="hp a d1" alt="{{ p1.title | escape }}" style="object-fit: contain;">
+        {%- if p1.featured_image -%}
+          <img src="{{ p1.featured_image | image_url: width: 400 }}" class="hp a d1" alt="{{ p1.title | escape }}" style="object-fit: contain; mix-blend-mode: multiply;">
+        {%- else -%}
+          <span class="hp a d1" role="img" aria-label="{{ p1.title | escape }}"></span>
+        {%- endif -%}
       {%- else -%}
         {%- if forloop.index == 1 -%}<span class="hp p-kbtl a d1" role="img"></span>{%- endif -%}
         {%- if forloop.index == 2 -%}<span class="hp p-tbtl a d1" role="img"></span>{%- endif -%}
@@ -196,14 +198,22 @@
       {%- endif -%}
       
       {%- if p2 != blank -%}
-        <img src="{{ p2.featured_image | image_url: width: 400 }}" class="hp b d2" alt="{{ p2.title | escape }}" style="object-fit: contain;">
+        {%- if p2.featured_image -%}
+          <img src="{{ p2.featured_image | image_url: width: 400 }}" class="hp b d2" alt="{{ p2.title | escape }}" style="object-fit: contain; mix-blend-mode: multiply;">
+        {%- else -%}
+          <span class="hp b d2" role="img" aria-label="{{ p2.title | escape }}"></span>
+        {%- endif -%}
       {%- else -%}
         {%- if forloop.index == 2 -%}<span class="hp p-kbtl b d2" role="img"></span>{%- endif -%}
         {%- if forloop.index == 3 -%}<span class="hp p-mbtl b d2" role="img"></span>{%- endif -%}
       {%- endif -%}
       
       {%- if p3 != blank -%}
-        <img src="{{ p3.featured_image | image_url: width: 400 }}" class="hp c d3" alt="{{ p3.title | escape }}" style="object-fit: contain;">
+        {%- if p3.featured_image -%}
+          <img src="{{ p3.featured_image | image_url: width: 400 }}" class="hp c d3" alt="{{ p3.title | escape }}" style="object-fit: contain; mix-blend-mode: multiply;">
+        {%- else -%}
+          <span class="hp c d3" role="img" aria-label="{{ p3.title | escape }}"></span>
+        {%- endif -%}
       {%- else -%}
         {%- if forloop.index == 3 -%}<span class="hp p-kbtl c d3" role="img"></span>{%- endif -%}
       {%- endif -%}

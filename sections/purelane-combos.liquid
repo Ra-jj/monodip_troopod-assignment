@@ -39,7 +39,11 @@
             <div class="stack">
               {%- if p1 != blank -%}
                 <span class="it">
-                  <img src="{{ p1.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p1.title | escape }}" loading="lazy">
+                  {%- if p1.featured_image -%}
+                    <img src="{{ p1.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p1.title | escape }}" loading="lazy">
+                  {%- else -%}
+                    <span class="pimg" role="img" aria-label="{{ p1.title | escape }}"></span>
+                  {%- endif -%}
                   <span>{{ block.settings.p1_note | escape }}</span>
                 </span>
               {%- else -%}
@@ -50,7 +54,11 @@
               
               {%- if p2 != blank -%}
                 <span class="it">
-                  <img src="{{ p2.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p2.title | escape }}" loading="lazy">
+                  {%- if p2.featured_image -%}
+                    <img src="{{ p2.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p2.title | escape }}" loading="lazy">
+                  {%- else -%}
+                    <span class="pimg" role="img" aria-label="{{ p2.title | escape }}"></span>
+                  {%- endif -%}
                   <span>{{ block.settings.p2_note | escape }}</span>
                 </span>
               {%- else -%}
@@ -63,7 +71,11 @@
               
               {%- if p3 != blank -%}
                 <span class="it">
-                  <img src="{{ p3.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p3.title | escape }}" loading="lazy">
+                  {%- if p3.featured_image -%}
+                    <img src="{{ p3.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p3.title | escape }}" loading="lazy">
+                  {%- else -%}
+                    <span class="pimg" role="img" aria-label="{{ p3.title | escape }}"></span>
+                  {%- endif -%}
                   <span>{{ block.settings.p3_note | escape }}</span>
                 </span>
               {%- else -%}
