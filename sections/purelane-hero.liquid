@@ -221,9 +221,9 @@
       <div class="glass-2 ptag">
         <span class="lbl">{{ block.settings.label | escape }}</span>
         <span class="val">
-          <strong>{{ display_price | money_without_trailing_zeros }}</strong>
+          <strong>&#8377;{{ display_price | money_without_currency | remove: '.00' }}</strong>
           {%- if total_compare > display_price -%}
-            <s>{{ total_compare | money_without_trailing_zeros }}</s>
+            <s>&#8377;{{ total_compare | money_without_currency | remove: '.00' }}</s>
           {%- endif -%}
         </span>
         {%- if total_compare > display_price -%}

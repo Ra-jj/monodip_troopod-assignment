@@ -16,9 +16,21 @@
         {%- assign total_value = 0 -%}
         {%- assign product_count = 0 -%}
         
-        {%- if p1 != blank -%}{%- assign total_value = total_value | plus: p1.price -%}{%- assign product_count = product_count | plus: 1 -%}{%- endif -%}
-        {%- if p2 != blank -%}{%- assign total_value = total_value | plus: p2.price -%}{%- assign product_count = product_count | plus: 1 -%}{%- endif -%}
-        {%- if p3 != blank -%}{%- assign total_value = total_value | plus: p3.price -%}{%- assign product_count = product_count | plus: 1 -%}{%- endif -%}
+        {%- if p1 != blank -%}
+          {%- assign p1_val = p1.compare_at_price | default: p1.price -%}
+          {%- assign total_value = total_value | plus: p1_val -%}
+          {%- assign product_count = product_count | plus: 1 -%}
+        {%- endif -%}
+        {%- if p2 != blank -%}
+          {%- assign p2_val = p2.compare_at_price | default: p2.price -%}
+          {%- assign total_value = total_value | plus: p2_val -%}
+          {%- assign product_count = product_count | plus: 1 -%}
+        {%- endif -%}
+        {%- if p3 != blank -%}
+          {%- assign p3_val = p3.compare_at_price | default: p3.price -%}
+          {%- assign total_value = total_value | plus: p3_val -%}
+          {%- assign product_count = product_count | plus: 1 -%}
+        {%- endif -%}
         
         {%- assign bundle_price = block.settings.bundle_price | times: 100 -%}
         {%- if bundle_price == 0 or bundle_price == blank -%}
@@ -30,7 +42,7 @@
         <article class="glass combo {% if block.settings.is_hero %}hero-combo{% endif %}" {{ block.shopify_attributes }}>
           <div class="tray">
             {%- if savings > 0 -%}
-              <span class="save">You save {{ savings | money_without_trailing_zeros }}</span>
+              <span class="save">You save &#8377;{{ savings | money_without_currency | remove: '.00' }}</span>
             {%- endif -%}
             {%- if block.settings.badge != blank -%}
               <span class="flag">{{ block.settings.badge | escape }}</span>
@@ -88,10 +100,10 @@
             <div class="cnt">{{ product_count }} products</div>
             <p class="inc">{{ block.settings.description | escape }}</p>
             <div class="prow">
-              <strong>{{ bundle_price | money_without_trailing_zeros }}</strong>
+              <strong>&#8377;{{ bundle_price | money_without_currency | remove: '.00' }}</strong>
               {%- if savings > 0 -%}
-                <s>{{ total_value | money_without_trailing_zeros }}</s>
-                <em>Save {{ savings | money_without_trailing_zeros }}</em>
+                <s>&#8377;{{ total_value | money_without_currency | remove: '.00' }}</s>
+                <em>Save &#8377;{{ savings | money_without_currency | remove: '.00' }}</em>
               {%- endif -%}
             </div>
             <div class="fine">Inclusive of all taxes &middot; COD available</div>

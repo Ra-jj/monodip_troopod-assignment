@@ -33,7 +33,7 @@
           </div>
           
           <div class="qty">{{ block.settings.qty }}<small>Products</small></div>
-          <div class="price">{{ block.settings.price | times: 100 | money_without_trailing_zeros }} <s>{{ block.settings.compare_price | times: 100 | money_without_trailing_zeros }}</s></div>
+          <div class="price">&#8377;{{ block.settings.price | times: 100 | money_without_currency | remove: '.00' }} <s>&#8377;{{ block.settings.compare_price | times: 100 | money_without_currency | remove: '.00' }}</s></div>
           <p class="body-s" style="font-size:12px">{{ block.settings.subtext | escape }}</p>
           
           <ul>
