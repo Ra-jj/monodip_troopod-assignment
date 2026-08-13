@@ -17,7 +17,7 @@
           <h5>{{ block.settings.title | escape }}</h5>
           <p>{{ block.settings.text | escape }}</p>
           <div class="who">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
             <b>{{ block.settings.author | escape }}</b>
             {%- if block.settings.product_name != blank -%}
               <span>&middot; {{ block.settings.product_name | escape }}</span>
@@ -37,7 +37,7 @@
           <h5>{{ block.settings.title | escape }}</h5>
           <p>{{ block.settings.text | escape }}</p>
           <div class="who">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
             <b>{{ block.settings.author | escape }}</b>
             {%- if block.settings.product_name != blank -%}
               <span>&middot; {{ block.settings.product_name | escape }}</span>

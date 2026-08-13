@@ -3,7 +3,7 @@
     <div class="panel-head rv">
       <span class="kicker">{{ section.settings.kicker | escape }}</span>
       <h2 class="d2" style="margin-top:12px">{{ section.settings.heading | escape }}</h2>
-      <div class="rule"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div>
+      <div class="rule"><i></i><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div>
       <p class="lede" style="margin:14px auto 0">{{ section.settings.description | escape }}</p>
     </div>
     
@@ -39,7 +39,7 @@
             <div class="stack">
               {%- if p1 != blank -%}
                 <span class="it">
-                  <img src="{{ p1.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p1.title | escape }}">
+                  <img src="{{ p1.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p1.title | escape }}" loading="lazy">
                   <span>{{ block.settings.p1_note | escape }}</span>
                 </span>
               {%- else -%}
@@ -50,12 +50,12 @@
               
               {%- if p2 != blank -%}
                 <span class="it">
-                  <img src="{{ p2.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p2.title | escape }}">
+                  <img src="{{ p2.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p2.title | escape }}" loading="lazy">
                   <span>{{ block.settings.p2_note | escape }}</span>
                 </span>
               {%- else -%}
                 <span class="it"><span class="{% if forloop.index == 2 %}tile{% else %}pimg {% if forloop.index == 1 %}p-dish{% elsif forloop.index == 3 %}p-floor{% endif %}{% endif %}" role="img">
-                  {% if forloop.index == 2 %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>{% endif %}
+                  {% if forloop.index == 2 %}<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>{% endif %}
                 </span><span>{% if forloop.index == 1 %}Squeaky clean dishes{% elsif forloop.index == 2 %}Softens & freshens every wash{% elsif forloop.index == 3 %}Kills 99.9% germs{% endif %}</span></span>
               {%- endif -%}
               
@@ -63,7 +63,7 @@
               
               {%- if p3 != blank -%}
                 <span class="it">
-                  <img src="{{ p3.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p3.title | escape }}">
+                  <img src="{{ p3.featured_image | image_url: width: 100 }}" class="pimg" style="object-fit: contain; mix-blend-mode: multiply;" alt="{{ p3.title | escape }}" loading="lazy">
                   <span>{{ block.settings.p3_note | escape }}</span>
                 </span>
               {%- else -%}
@@ -84,13 +84,13 @@
             </div>
             <div class="fine">Inclusive of all taxes &middot; COD available</div>
             <a class="btn {% if block.settings.is_hero %}btn-primary{% else %}btn-ghost{% endif %}" href="#bundles">
-              Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+              Shop bundle <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
             </a>
           </div>
         </article>
       {%- endfor -%}
     </div>
-    <div class="swipecue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>Swipe for more combos</div>
+    <div class="swipecue" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>Swipe for more combos</div>
     <p class="railnote">Tapping "Shop bundle" opens the bundle picker with these products already added. You can still swap anything before you pay.</p>
   </div>
 </section>

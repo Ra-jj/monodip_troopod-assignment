@@ -17,13 +17,17 @@
       <span class="pill">{{ pill_text }}</span>
     {%- endif -%}
     {%- if product.featured_media -%}
-      <img src="{{ product.featured_media | image_url: width: 500 }}" class="pimg" alt="{{ product.featured_media.alt | escape }}" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply">
+      <img src="{{ product.featured_media | image_url: width: 500 }}" class="pimg" alt="{{ product.featured_media.alt | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply">
     {%- else -%}
       <div class="pimg" style="background:rgba(75,58,143,0.1);display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:12px">No image</div>
     {%- endif -%}
   </div>
   <h4 style="min-height:36px">{{ product.title | escape }}</h4>
-  <div class="rate"><b>★ 4.8</b> &middot; 237 reviews</div>
+  {%- if product.metafields.reviews.rating.value != blank -%}
+    <div class="rate"><b>★ {{ product.metafields.reviews.rating.value }}</b> &middot; {{ product.metafields.reviews.rating_count }} reviews</div>
+  {%- else -%}
+    <div class="rate" aria-hidden="true" style="opacity: 0.5;">No reviews yet</div>
+  {%- endif -%}
   <div class="pr">
     <strong>{{ product.price | money_without_trailing_zeros }}</strong>
     {%- if product.compare_at_price > product.price -%}
